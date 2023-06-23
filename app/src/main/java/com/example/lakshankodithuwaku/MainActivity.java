@@ -4,7 +4,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.StrictMode;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -37,14 +36,23 @@ public class MainActivity extends AppCompatActivity {
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                /*Intent intent=new Intent(MainActivity.this,home.class);
-                startActivity(intent);*/
-                sendJsonRequest(url,"test","Test123");
+
+                sendJsonRequest(url, "test", "Test12", new JsonRequestCallback() {
+                    @Override
+                    public void onResponseString(String response) {
+                        System.out.println(response);
+                        if(response.equals("success")){
+                            Intent intent=new Intent(MainActivity.this,home.class);
+                            startActivity(intent);
+                        }
+                    }
+                });
+
             }
         });
     }
 
-    public void sendJsonRequest(String url, String username, String password) {
+    public void sendJsonRequest(String url, String username, String password, JsonRequestCallback callback) {
         try {
             // Create the JSON object
             JSONObject jsonBody = new JSONObject();
@@ -55,8 +63,11 @@ public class MainActivity extends AppCompatActivity {
                 @Override
                 public void onResponse(JSONObject response) {
                     try {
-                        String datetime = response.getString("res_desc");
-                        data.setText(datetime);
+                        String res_desc = response.getString("res_desc");
+                        data.setText(res_desc);
+
+                        // Invoke the callback with the response string
+                        callback.onResponseString(res_desc);
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
