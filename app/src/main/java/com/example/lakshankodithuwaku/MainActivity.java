@@ -21,7 +21,7 @@ import org.json.JSONObject;
 public class MainActivity extends AppCompatActivity {
 
     TextView data;
-    String url= "https://worldtimeapi.org/api/timezone/Asia/Colombo";//"https://123.231.9.43:3999";
+    String url= "http://123.231.9.43:3999";
 
     private Button login;
 
@@ -30,24 +30,19 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        /*if (android.os.Build.VERSION.SDK_INT > 9) {
-            StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
-            StrictMode.setThreadPolicy(policy);
-        }*/
-
         data = findViewById(R.id.data);
 
-      /*  try {*/
+        try {
             // Create the JSON object
-           /* JSONObject jsonBody = new JSONObject();
+            JSONObject jsonBody = new JSONObject();
             jsonBody.put("username", "test");
-            jsonBody.put("password", "Test123");*/
+            jsonBody.put("password", "Test123");
 
-            JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
+            JsonObjectRequest request = new JsonObjectRequest(Request.Method.POST, url, jsonBody, new Response.Listener<JSONObject>() {
                 @Override
                 public void onResponse(JSONObject response) {
                     try {
-                        String datetime = response.getString("datetime");//"res_desc");
+                        String datetime = response.getString("res_desc");
                         data.setText(datetime);
                     }catch (Exception e){
                         e.printStackTrace();
@@ -61,14 +56,15 @@ public class MainActivity extends AppCompatActivity {
                 }
             });
             Volley.newRequestQueue(this).add(request);
-     /*   }catch (JSONException e) {
+        }catch (JSONException e) {
             e.printStackTrace();
-        }*/
+        }
 
         login=findViewById(R.id.login);
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
                 Intent intent=new Intent(MainActivity.this,home.class);
                 startActivity(intent);
             }
