@@ -12,10 +12,10 @@ This is a simple Android native application that features a login page and a hom
 
 To run this application locally, follow these steps:
 
-1. Clone the repository:
+1. Clone the repository: (Use release branch)
 
 ```bash
-git clone https://github.com/LakshanKodithuwakku/LakshanKodithuwakkuAssigmentCBA.git
+git clone [https://github.com/LakshanKodithuwakku/LakshanKodithuwakkuAssigmentCBA.git](https://github.com/LakshanKodithuwakku/LakshanKodithuwakkuAssigmentCBA/tree/release)
 ```
 
 2. Open the project in Android Studio.
