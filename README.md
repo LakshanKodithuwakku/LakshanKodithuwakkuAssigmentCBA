@@ -25,6 +25,12 @@ git clone https://github.com/LakshanKodithuwakku/LakshanKodithuwakkuAssigmentCBA
 
 1. Launch the application on your Android device or emulator.
 2. On the login screen, enter your username and password in the corresponding text fields.
+   ```json
+   {
+    "username":"test",
+    "password":"Test123"
+   }
+    ```
 3. Tap the login button to submit the form.
 4. If the entered credentials are incorrect, an error message will be displayed at the top of the login screen.
 5. If the credentials are correct, you will be redirected to the home screen.
