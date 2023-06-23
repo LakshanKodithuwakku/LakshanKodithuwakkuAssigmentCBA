@@ -30,8 +30,8 @@ public class home extends AppCompatActivity {
                 String gender = sharedPreferences.getString("gender", "");
                 String company = sharedPreferences.getString("company", "");
                 String position = sharedPreferences.getString("position", "");
-                view.setText("Id: "+ id +"\n"+ "email: " + email+"\n"+"Name: "+ name +"\n"+ "DOB: " + dob+"\n"+"Gender: "+
-                        gender +"\n"+ "Company: " + company+"\n"+"Position: "+ position);
+                view.setText("Id: "+ id +"\n\n"+ "email: " + email+"\n\n"+"Name: "+ name +"\n\n"+ "DOB: " + dob+"\n\n"+"Gender: "+
+                        gender +"\n\n"+ "Company: " + company+"\n\n"+"Position: "+ position);
             }
         });
     }
