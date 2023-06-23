@@ -32,11 +32,24 @@ public class MainActivity extends AppCompatActivity {
 
         data = findViewById(R.id.data);
 
+
+        login=findViewById(R.id.login);
+        login.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                /*Intent intent=new Intent(MainActivity.this,home.class);
+                startActivity(intent);*/
+                sendJsonRequest(url,"test","Test123");
+            }
+        });
+    }
+
+    public void sendJsonRequest(String url, String username, String password) {
         try {
             // Create the JSON object
             JSONObject jsonBody = new JSONObject();
-            jsonBody.put("username", "test");
-            jsonBody.put("password", "Test123");
+            jsonBody.put("username", username);
+            jsonBody.put("password", password);
 
             JsonObjectRequest request = new JsonObjectRequest(Request.Method.POST, url, jsonBody, new Response.Listener<JSONObject>() {
                 @Override
@@ -44,7 +57,7 @@ public class MainActivity extends AppCompatActivity {
                     try {
                         String datetime = response.getString("res_desc");
                         data.setText(datetime);
-                    }catch (Exception e){
+                    } catch (Exception e) {
                         e.printStackTrace();
                     }
                 }
@@ -56,18 +69,9 @@ public class MainActivity extends AppCompatActivity {
                 }
             });
             Volley.newRequestQueue(this).add(request);
-        }catch (JSONException e) {
+        } catch (JSONException e) {
             e.printStackTrace();
         }
-
-        login=findViewById(R.id.login);
-        login.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-                Intent intent=new Intent(MainActivity.this,home.class);
-                startActivity(intent);
-            }
-        });
     }
+
 }
